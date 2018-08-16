@@ -1,0 +1,273 @@
+---
+swagger: "2.0"
+info:
+  description: This API is for testing purposes
+  version: 1.0.0
+  title: Clinic Management System
+host: localhost:5080
+basePath: /api/v1
+schemes:
+- http
+paths:
+  /staff:
+    get:
+      tags:
+      - staff
+      summary: Get list of staff
+      description: get list of staff and details
+      operationId: getStaff
+      produces:
+      - application/json
+      - application/xml
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Staff'
+    post:
+      tags:
+      - staff
+      summary: Add staff
+      description: Adding staff
+      operationId: addStaff
+      consumes:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: staff details need to be added
+        required: false
+        schema:
+          $ref: '#/definitions/Staff'
+      responses:
+        201:
+          description: Created
+    put:
+      tags:
+      - staff
+      summary: Update staff
+      description: update staff detail
+      operationId: updateStaff
+      consumes:
+      - application/xml
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: staff details need to be updated
+        required: false
+        schema:
+          $ref: '#/definitions/Staff'
+      responses:
+        204:
+          description: No Content
+  /staff/findByType:
+    get:
+      tags:
+      - staff
+      summary: Get list of staff find by type
+      description: Get list of staff find type
+      produces:
+      - application/xml
+      - application/json
+      parameters:
+      - name: staffName
+        in: query
+        required: false
+        type: string
+      - name: staffId
+        in: query
+        required: false
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Staff'
+  /order:
+    get:
+      tags:
+      - order
+      summary: Get order
+      description: ""
+      parameters: []
+      responses:
+        200:
+          description: OK
+    post:
+      tags:
+      - order
+      summary: Create order
+      description: ""
+      parameters:
+      - in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/Order'
+      responses:
+        201:
+          description: Created
+    put:
+      tags:
+      - order
+      summary: Update order
+      description: ""
+      parameters: []
+      responses:
+        204:
+          description: No Content
+  /order/result/pdf:
+    get:
+      tags:
+      - pdf result
+      summary: Get result
+      description: ""
+      operationId: getPdfResult
+      produces:
+      - multipart/form-data
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            type: file
+    post:
+      tags:
+      - pdf result
+      summary: Add result
+      description: ""
+      operationId: addPdfResult
+      consumes:
+      - multipart/form-data
+      parameters:
+      - name: pdfResult
+        in: formData
+        required: false
+        type: file
+      responses:
+        201:
+          description: Created
+    put:
+      tags:
+      - pdf result
+      summary: Update result
+      description: ""
+      operationId: updatePdfResult
+      consumes:
+      - multipart/form-data
+      parameters:
+      - name: pdfResult
+        in: formData
+        required: false
+        type: file
+      responses:
+        204:
+          description: No Content
+definitions:
+  Staff:
+    type: object
+    properties:
+      staffId:
+        type: integer
+        format: int64
+      name:
+        type: string
+      age:
+        type: integer
+        format: int32
+      weight:
+        type: integer
+        format: double
+      height:
+        type: integer
+        format: double
+      roles:
+        $ref: '#/definitions/Role'
+      createdDate:
+        type: string
+        format: date-time
+      updatedDate:
+        type: string
+        format: date-time
+      isActive:
+        type: boolean
+        default: false
+    example:
+      createdDate: 2000-01-23T04:56:07.000+00:00
+      roles:
+        createdDate: 2000-01-23T04:56:07.000+00:00
+        roleId: 5
+        name: name
+        updatedDate: 2000-01-23T04:56:07.000+00:00
+      name: name
+      weight: 1
+      updatedDate: 2000-01-23T04:56:07.000+00:00
+      isActive: false
+      staffId: 0
+      age: 6
+      height: 5
+  Role:
+    type: object
+    properties:
+      roleId:
+        type: integer
+        format: int64
+      name:
+        type: string
+      createdDate:
+        type: string
+        format: date-time
+      updatedDate:
+        type: string
+        format: date-time
+    example:
+      createdDate: 2000-01-23T04:56:07.000+00:00
+      roleId: 5
+      name: name
+      updatedDate: 2000-01-23T04:56:07.000+00:00
+  Order:
+    type: object
+    properties:
+      orderId:
+        type: integer
+        format: int64
+      drugs: {}
+      createdBy:
+        type: string
+      createdDate:
+        type: string
+        format: date-time
+      updatedBy:
+        type: string
+      updatedDate:
+        type: string
+        format: date-time
+      isActive:
+        type: boolean
+        default: false
+    example:
+      createdDate: 2000-01-23T04:56:07.000+00:00
+      updatedBy: updatedBy
+      orderId: 0
+      drugs: ""
+      createdBy: createdBy
+      updatedDate: 2000-01-23T04:56:07.000+00:00
+      isActive: false
+  Drug:
+    type: object
+    properties:
+      drugId:
+        type: integer
+        format: int64
+      name:
+        type: string
+      description:
+        type: string
