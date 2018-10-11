@@ -53,8 +53,8 @@ paths:
       description: update staff detail
       operationId: updateStaff
       consumes:
-      - application/xml
       - application/json
+      - application/xml
       parameters:
       - in: body
         name: body
@@ -72,8 +72,8 @@ paths:
       summary: Get list of staff find by type
       description: Get list of staff find type
       produces:
-      - application/xml
       - application/json
+      - application/xml
       parameters:
       - name: staffName
         in: query
@@ -95,15 +95,21 @@ paths:
     get:
       tags:
       - order
+      operationId: getOrder
       summary: Get order
       description: ""
-      parameters: []
+      produces:
+      - application/json
+      - application/xml
       responses:
         200:
           description: OK
+          schema:
+            $ref: '#/definitions/Order'
     post:
       tags:
       - order
+      operationId: addOrder
       summary: Create order
       description: ""
       parameters:
@@ -118,6 +124,7 @@ paths:
     put:
       tags:
       - order
+      operationId: updateOrder
       summary: Update order
       description: ""
       parameters: []

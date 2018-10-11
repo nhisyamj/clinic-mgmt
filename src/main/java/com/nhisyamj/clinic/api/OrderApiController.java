@@ -9,27 +9,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-10-11T19:00:11.469Z")
 
-/**
- *<h1>OrderApiController</h1>
- * Class description
- * <p>
- ***
- * @author: Hisyam Johan
- * @since: 16/08/2018
- * @version: 1.0
- * Time: 10:50 PM
- * Email: nhisyamj@gmail.com
- ***
- */
 @Controller
 public class OrderApiController implements OrderApi {
 
@@ -45,9 +38,37 @@ public class OrderApiController implements OrderApi {
         this.request = request;
     }
 
+    public ResponseEntity<Void> addOrder(@ApiParam(value = ""  )  @Valid @RequestBody Order body) {
+        String accept = request.getHeader("Accept");
+        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
     public ResponseEntity<Void> addPdfResult(@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile pdfResult) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    public ResponseEntity<Order> getOrder() {
+        String accept = request.getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            try {
+                return new ResponseEntity<Order>(objectMapper.readValue("{  \"createdDate\" : { },  \"updatedBy\" : \"updatedBy\",  \"orderId\" : 0,  \"drugs\" : \"\",  \"createdBy\" : \"createdBy\",  \"updatedDate\" : { },  \"isActive\" : false}", Order.class), HttpStatus.NOT_IMPLEMENTED);
+            } catch (IOException e) {
+                log.error("Couldn't serialize response for content type application/json", e);
+                return new ResponseEntity<Order>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
+        if (accept != null && accept.contains("application/xml")) {
+            try {
+                return new ResponseEntity<Order>(objectMapper.readValue("<null>  <orderId>123456789</orderId>  <createdBy>aeiou</createdBy>  <createdDate>2000-01-23T04:56:07.000Z</createdDate>  <updatedBy>aeiou</updatedBy>  <updatedDate>2000-01-23T04:56:07.000Z</updatedDate>  <isActive>true</isActive></null>", Order.class), HttpStatus.NOT_IMPLEMENTED);
+            } catch (IOException e) {
+                log.error("Couldn't serialize response for content type application/xml", e);
+                return new ResponseEntity<Order>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
+        return new ResponseEntity<Order>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     public ResponseEntity<Resource> getPdfResult() {
@@ -64,17 +85,7 @@ public class OrderApiController implements OrderApi {
         return new ResponseEntity<Resource>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> orderGet() {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    public ResponseEntity<Void> orderPost(@ApiParam(value = ""  )  @Valid @RequestBody Order body) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    public ResponseEntity<Void> orderPut() {
+    public ResponseEntity<Void> updateOrder() {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
