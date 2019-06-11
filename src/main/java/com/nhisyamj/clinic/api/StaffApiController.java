@@ -53,15 +53,6 @@ public class StaffApiController implements StaffApi {
             }
         }
 
-        if (accept != null && accept.contains("application/xml")) {
-            try {
-                return new ResponseEntity<List<Staff>>(objectMapper.readValue("<null>  <staffId>123456789</staffId>  <name>aeiou</name>  <age>123</age>  <weight>123</weight>  <height>123</height>  <createdDate>2000-01-23T04:56:07.000Z</createdDate>  <updatedDate>2000-01-23T04:56:07.000Z</updatedDate>  <isActive>true</isActive></null>", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/xml", e);
-                return new ResponseEntity<List<Staff>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
         return new ResponseEntity<List<Staff>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
@@ -72,15 +63,6 @@ public class StaffApiController implements StaffApi {
                 return new ResponseEntity<List<Staff>>(objectMapper.readValue("[ {  \"createdDate\" : { },  \"roles\" : {    \"createdDate\" : { },    \"roleId\" : 5,    \"name\" : \"name\",    \"updatedDate\" : { }  },  \"name\" : \"name\",  \"weight\" : 1,  \"updatedDate\" : { },  \"isActive\" : false,  \"staffId\" : 0,  \"age\" : 6,  \"height\" : 5}, {  \"createdDate\" : { },  \"roles\" : {    \"createdDate\" : { },    \"roleId\" : 5,    \"name\" : \"name\",    \"updatedDate\" : { }  },  \"name\" : \"name\",  \"weight\" : 1,  \"updatedDate\" : { },  \"isActive\" : false,  \"staffId\" : 0,  \"age\" : 6,  \"height\" : 5} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Staff>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        if (accept != null && accept.contains("application/xml")) {
-            try {
-                return new ResponseEntity<List<Staff>>(objectMapper.readValue("<null>  <staffId>123456789</staffId>  <name>aeiou</name>  <age>123</age>  <weight>123</weight>  <height>123</height>  <createdDate>2000-01-23T04:56:07.000Z</createdDate>  <updatedDate>2000-01-23T04:56:07.000Z</updatedDate>  <isActive>true</isActive></null>", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/xml", e);
                 return new ResponseEntity<List<Staff>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }

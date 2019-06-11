@@ -96,7 +96,6 @@ paths:
       description: ""
       produces:
       - application/json
-      - application/xml
       responses:
         200:
           description: OK

@@ -59,15 +59,6 @@ public class OrderApiController implements OrderApi {
             }
         }
 
-        if (accept != null && accept.contains("application/xml")) {
-            try {
-                return new ResponseEntity<Order>(objectMapper.readValue("<null>  <orderId>123456789</orderId>  <createdBy>aeiou</createdBy>  <createdDate>2000-01-23T04:56:07.000Z</createdDate>  <updatedBy>aeiou</updatedBy>  <updatedDate>2000-01-23T04:56:07.000Z</updatedDate>  <isActive>true</isActive></null>", Order.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/xml", e);
-                return new ResponseEntity<Order>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
         return new ResponseEntity<Order>(HttpStatus.NOT_IMPLEMENTED);
     }
 

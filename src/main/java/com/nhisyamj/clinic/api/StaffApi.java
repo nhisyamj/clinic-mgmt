@@ -30,7 +30,7 @@ public interface StaffApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Created") })
     @RequestMapping(value = "/staff",
-        consumes = { "application/json", "application/xml" },
+        consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<Void> addStaff(@ApiParam(value = "staff details need to be added") @Valid @RequestBody Staff body);
 
@@ -39,7 +39,7 @@ public interface StaffApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Staff.class, responseContainer = "List") })
     @RequestMapping(value = "/staff",
-        produces = { "application/json", "application/xml" }, 
+        produces = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<List<Staff>> getStaff();
 
@@ -48,7 +48,7 @@ public interface StaffApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Staff.class, responseContainer = "List") })
     @RequestMapping(value = "/staff/findByType",
-        produces = { "application/json", "application/xml" }, 
+        produces = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<List<Staff>> staffFindByTypeGet(@ApiParam(value = "") @Valid @RequestParam(value = "staffName", required = false) String staffName, @ApiParam(value = "") @Valid @RequestParam(value = "staffId", required = false) Long staffId);
 
@@ -57,7 +57,7 @@ public interface StaffApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "No Content") })
     @RequestMapping(value = "/staff",
-        consumes = { "application/json", "application/xml" },
+        consumes = { "application/json" },
         method = RequestMethod.PUT)
     ResponseEntity<Void> updateStaff(@ApiParam(value = "staff details need to be updated") @Valid @RequestBody Staff body);
 

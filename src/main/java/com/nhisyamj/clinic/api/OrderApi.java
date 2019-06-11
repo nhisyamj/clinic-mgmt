@@ -48,7 +48,7 @@ public interface OrderApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Order.class) })
     @RequestMapping(value = "/order",
-        produces = { "application/json", "application/xml" }, 
+        produces = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<Order> getOrder();
 
