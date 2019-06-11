@@ -18,7 +18,6 @@ paths:
       operationId: getStaff
       produces:
       - application/json
-      - application/xml
       parameters: []
       responses:
         200:
@@ -35,7 +34,6 @@ paths:
       operationId: addStaff
       consumes:
       - application/json
-      - application/xml
       parameters:
       - in: body
         name: body
@@ -54,7 +52,6 @@ paths:
       operationId: updateStaff
       consumes:
       - application/json
-      - application/xml
       parameters:
       - in: body
         name: body
@@ -73,7 +70,6 @@ paths:
       description: Get list of staff find type
       produces:
       - application/json
-      - application/xml
       parameters:
       - name: staffName
         in: query
